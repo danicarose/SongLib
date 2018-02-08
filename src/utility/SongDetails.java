@@ -1,6 +1,6 @@
-package view;
+package utility;
 
-public class Song {
+public class SongDetails {
 	private String title;
 	private String artist;
 	private String album;
@@ -40,3 +40,5 @@ public class Song {
 	}
 	
 }
+
+

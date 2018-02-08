@@ -1,8 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/9">
-	<!-- TODO Add Nodes -->
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ListView layoutX="39.0" layoutY="76.0" prefHeight="301.0" prefWidth="224.0" />
+      <Button layoutX="326.0" layoutY="338.0" mnemonicParsing="false" text="Add" />
+      <Button layoutX="398.0" layoutY="338.0" mnemonicParsing="false" text="Delete" />
+      <Button layoutX="468.0" layoutY="338.0" mnemonicParsing="false" text="Edit" />
+      <Text layoutX="149.0" layoutY="28.0" opacity="0.44" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to Song Lib!" textAlignment="CENTER" wrappingWidth="302.9973907470703">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Text>
+      <Text layoutX="39.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Song List" />
+      <Text layoutX="326.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Song Details" />
+   </children>
 </AnchorPane>

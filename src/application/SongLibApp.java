@@ -1,18 +1,26 @@
 package application;
 	
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.AnchorPane;
+import view.SongLibController;
 
 
 public class SongLibApp extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			BorderPane root = new BorderPane();
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(getClass().getResource("/view/SongLib.fxml"));
+			
+			AnchorPane root = (AnchorPane)loader.load();
+			
+			SongLibController songLibController = loader.getController();
+			//songLibController.start();
+			
 			Scene scene = new Scene(root,400,400);
-			scene.getStylesheets().add(getClass().getResource("/view/SongLib.fxml").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch(Exception e) {
