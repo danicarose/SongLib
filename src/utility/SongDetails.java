@@ -1,3 +1,9 @@
+/*
+ * Danica Calusin
+ * Jonathan Filion
+ * CS213 - Assignment 1: Song Lib
+ */
+
 package utility;
 
 public class SongDetails {

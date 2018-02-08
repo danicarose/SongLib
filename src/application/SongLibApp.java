@@ -1,5 +1,9 @@
-package application;
-	
+/*
+ * Danica Calusin
+ * Jonathan Filion
+ * CS213 - Assignment 1: Song Lib
+ */
+package application;	
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
@@ -18,9 +22,10 @@ public class SongLibApp extends Application {
 			AnchorPane root = (AnchorPane)loader.load();
 			
 			SongLibController songLibController = loader.getController();
-			//songLibController.start();
-			
+			songLibController.start();
+						
 			Scene scene = new Scene(root,400,400);
+			primaryStage.setTitle("Song Library");
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch(Exception e) {
