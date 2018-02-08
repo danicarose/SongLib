@@ -23,7 +23,7 @@ public class SongLibController {
 	}
 	
 	//action handler when buttons are pressed 
-	public void changeScene(ActionEvent e){
+	public void eventHandler(ActionEvent e){
 		Button b = (Button)e.getSource();
 		if(b == add){
 			
