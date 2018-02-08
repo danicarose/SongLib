@@ -18,7 +18,7 @@ import javafx.scene.control.ListView;
 import utility.SongDetails;
 
 public class SongLibController {
-	@FXML ListView<SongDetails> listView;
+	@FXML ListView<SongDetails> listView; //already initialized in fxml file--don't need to create an instance 
 	@FXML Button add;
 	@FXML Button delete;
 	@FXML Button edit;
@@ -27,15 +27,19 @@ public class SongLibController {
 	private ObservableList<SongDetails> obsList;
 	private File songsFile; //file used to store songs 
 	
-	SongDetails someSong = new SongDetails();
-	SongDetails anotherSong = new SongDetails();
-	
+	/*
+	 * (1) UNCOMMENT THIS TO TEST CODE
+	 * SongDetails someSong = new SongDetails();
+	 * SongDetails anotherSong = new SongDetails();
+	 */
+
 	public void start(){
 		//create an ObservableList from an ArrayList
-		obsList = FXCollections.observableArrayList(someSong);
 		
+		//(1) FOR TESTING 
+		//obsList = FXCollections.observableArrayList(someSong, anotherSong);
+		obsList = FXCollections.observableArrayList();
 		
-		listView = new ListView<>();
 		listView.setItems(obsList);
 		listView.getSelectionModel().selectFirst(); //ensures first item in list is automatically selected at start
 	}
