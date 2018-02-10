@@ -10,7 +10,7 @@ public class SongDetails {
 	private String title;
 	private String artist;
 	private String album;
-	private int year;
+	private String year;
 	
 	
 	public void setTitle(String title){
@@ -37,14 +37,19 @@ public class SongDetails {
 		return this.album;
 	}
 	
-	public void setYear(int year){
+	public void setYear(String year){
 		this.year = year;
 	}
 	
-	public int getYear(){
+	public String getYear(){
 		return this.year;
 	}
 	
+/*	
+	//why is this not showing up on the GUI 
+	public String toString(){
+		return getTitle();
+	}*/
 }
 
 

@@ -1,8 +1,10 @@
 /*
  * Danica Calusin
  * Jonathan Filion
+ * Group 22
  * CS213 - Assignment 1: Song Lib
- */
+*/
+
 package application;	
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

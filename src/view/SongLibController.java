@@ -1,6 +1,7 @@
 /*
  * Danica Calusin
  * Jonathan Filion
+ * Group 22
  * CS213 - Assignment 1: Song Lib
  */
 
@@ -25,23 +26,39 @@ public class SongLibController {
 	@FXML TextField songDetails;
 	
 	private ObservableList<SongDetails> obsList;
-	private File songsFile; //file used to store songs 
+	private File songLib; //file used to store songs 
 	
-	/*
-	 * (1) UNCOMMENT THIS TO TEST CODE
-	 * SongDetails someSong = new SongDetails();
-	 * SongDetails anotherSong = new SongDetails();
-	 */
+	
+	//(1) UNCOMMENT THIS TO TEST CODE
+	SongDetails someSong = new SongDetails();
+	SongDetails anotherSong = new SongDetails();
+	 
 
 	public void start(){
 		//create an ObservableList from an ArrayList
 		
 		//(1) FOR TESTING 
-		//obsList = FXCollections.observableArrayList(someSong, anotherSong);
-		obsList = FXCollections.observableArrayList();
+		obsList = FXCollections.observableArrayList(someSong, anotherSong);
+		
+		//for actual use in application 
+		//obsList = FXCollections.observableArrayList();
+		
+		songFileHandler();
+		
+		
 		
 		listView.setItems(obsList);
 		listView.getSelectionModel().selectFirst(); //ensures first item in list is automatically selected at start
+		//need to write code for the listener 
+	}
+	
+	
+	/*
+	 * creates JSON file and then parses JSON objects into a JSONarray that will hold the song objects
+	 * song objects are then parsed to the obsList 
+	 */
+	private void songFileHandler(){
+		songLib = new File("songLib.json"); //need to import JSON library
 	}
 	
 	//action handler when buttons are pressed 
