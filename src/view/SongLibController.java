@@ -227,6 +227,8 @@ private void songDisplay() {
 		txt_artist.clear();
 		txt_album.clear();
 		txt_year.clear();
+=======
+	private void onClick_edit(ActionEvent e){
 		
 	}
 	
