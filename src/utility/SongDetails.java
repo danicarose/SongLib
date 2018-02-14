@@ -45,6 +45,8 @@ public class SongDetails {
 		return this.year;
 	}
 	
+	
+	
 /*	
 	//why is this not showing up on the GUI 
 	public String toString(){
