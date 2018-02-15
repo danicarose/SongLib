@@ -185,10 +185,32 @@ private void songDisplay() {
 	}
 	*/
 	@FXML
-	private void onClick_delete(){
+	private void onClick_delete(ActionEvent e){
+
+		JSONParser parser = new JSONParser();
+		String toBeDeleted=listView.getSelectionModel().getSelectedItem();
 		
-	}
+		try 
+		{
+			JSONObject p = (JSONObject) parser.parse(new FileReader("songLib.json"));
+			JSONArray delete =(JSONArray) p.get("songs");
+		
+		for (int i = 0; i < delete.size(); i++) {
+		    JSONObject obj= (JSONObject) delete.get(i);
+		    if((obj.get("song name") + " by " +obj.get("artist name")).equals(toBeDeleted)){
+		    		delete.remove(i);
+		    		System.out.println();
+		    }
+		    songs=delete;
+		    root.put("songs", songs);
+		    songFileHandler();
+		    obsList.remove(toBeDeleted);
+		}
+	}   catch(FileNotFoundException ex) {ex.printStackTrace();}
+		catch(IOException ex) {ex.printStackTrace();}
+		catch(ParseException ex) {ex.printStackTrace();}
 	
+	}
 	@FXML
 	private void onClick_edit(ActionEvent e){
 		//get index of selected song item
