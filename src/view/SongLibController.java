@@ -22,6 +22,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
 import utility.SongDetails;
 
 import org.json.simple.JSONObject;
@@ -38,6 +39,7 @@ public class SongLibController {
 	@FXML TextField txt_artist;
 	@FXML TextField txt_album;
 	@FXML TextField txt_year;
+	@FXML TextArea details;
 	
 	private ObservableList<String> obsList;
 	private File songLib=new File("songLib.json"); //file used to store songs 
@@ -128,7 +130,7 @@ private void songDisplay() {
 		}
 		
 		//Checks if song field is empty
-		if(!(txt_album.getText().toString().trim().isEmpty() || txt_album.getText().toString()==null)) {
+		if(!(txt_year.getText().toString().trim().isEmpty() || txt_year.getText().toString()==null)) {
 			songYearTxt=txt_year.getText().toString();
 			songYear=Integer.parseInt(songYearTxt);
 			songObject.put("year", songYear);
@@ -155,8 +157,8 @@ private void songDisplay() {
 		txt_year.clear();
 	}
 	
-	@FXML
-	private void displayDetails(){
+	/*@FXML
+	private void displayDetails(ActionEvent d){
 		int index = listView.getSelectionModel().getSelectedIndex();
 		JSONParser parser = new JSONParser();
 		
@@ -165,45 +167,74 @@ private void songDisplay() {
 			JSONObject p = (JSONObject) parser.parse(new FileReader("songLib.json"));
 			JSONArray songDisp =(JSONArray) p.get("songs");
 			
-			/*for(int i=0; i< songDisp.size();i++) {
-				JSONObject songDisplay= (JSONObject) songDisp.get(i);
-				String sName = (String) songDisplay.get("song name");
-				String arName =(String) songDisplay.get("artist name");
-				obsList.add(sName + " by " + arName);
-			}*/
-			
 			JSONObject songDetailObj = (JSONObject) songDisp.get(index);
 			String sName = (String) songDetailObj.get("song name");
 			String arName = (String) songDetailObj.get("artist name");
 			String year = (String) songDetailObj.get("year");
 			String album = (String) songDetailObj.get("album");
+			
+			details.setText("Title: " + sName);
+			details.setText("Artist: " + arName);
+			details.setText("Album: " + album);
+			details.setText("Year: " + year);
+			
 		}
 		catch(FileNotFoundException e) {e.printStackTrace();}
 		catch(IOException e) {e.printStackTrace();}
 		catch(ParseException e) {e.printStackTrace();}
 	}
-	
+	*/
 	@FXML
 	private void onClick_delete(){
 		
 	}
 	
 	@FXML
-	private void onClick_edit(){
+	private void onClick_edit(ActionEvent e){
 		//get index of selected song item
 		int index = listView.getSelectionModel().getSelectedIndex();
 		
+		//get song object in appropriate index
+		JSONObject songToEdit = new JSONObject();
+		songToEdit = (JSONObject) songs.get(index);
 		
+		String title = (String) songToEdit.get("song name");
+		String album = (String) songToEdit.get("album name");
+		String artist = (String) songToEdit.get("artist name");
+		int year = (int) songToEdit.get("year");
 		
-
+		if(!(txt_name.getText().toString()==null || txt_name.getText().trim().isEmpty())){
+			//song title needs to be changed 
+			title = txt_name.getText().toString();
+			songToEdit.put("song name", title);
+		}
+		
+		if(!(txt_artist.getText().toString()==null || txt_artist.getText().trim().isEmpty())){
+			//song artist needs to be changed 
+			artist = txt_artist.getText().toString();
+			songToEdit.put("song artist", artist);
+		}
+		
+		if(!(txt_album.getText().toString()==null || txt_album.getText().trim().isEmpty())){
+			//song album needs to be changed 
+			album = txt_album.getText().toString();
+			songToEdit.put("album", album);
+		}
+		
+		if(!(txt_year.getText().toString().trim().isEmpty() || txt_year.getText().toString()==null)) {
+			//year needs to be changed
+			String yearString = txt_year.getText().toString();
+			year = Integer.parseInt(yearString);
+			songToEdit.put("year", year);
+		}
+		
 		//clear textboxes once song has been edited
 		txt_name.clear();
 		txt_artist.clear();
 		txt_album.clear();
-		txt_year.clear();
-		
-		
+		txt_year.clear();	
 	}
+	
 	private boolean duplicate(JSONObject songObject) {
 		JSONParser parser = new JSONParser();
 		try 

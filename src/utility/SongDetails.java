@@ -44,14 +44,7 @@ public class SongDetails {
 	public String getYear(){
 		return this.year;
 	}
-	
-	
-	
-/*	
-	//why is this not showing up on the GUI 
-	public String toString(){
-		return getTitle();
-	}*/
+
 }
 
 
