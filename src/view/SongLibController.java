@@ -211,14 +211,15 @@ private void songDisplay() {
 		catch(ParseException ex) {ex.printStackTrace();}
 	
 	}
+	@SuppressWarnings("unchecked")
 	@FXML
 	private void onClick_edit(ActionEvent e){
-		//get index of selected song item
 		int index = listView.getSelectionModel().getSelectedIndex();
 		
-		//get song object in appropriate index
 		JSONObject songToEdit = new JSONObject();
-		songToEdit = (JSONObject) songs.get(index);
+		songToEdit = (JSONObject) songs.get(index); //copy of object at this index - WILL NOT CHANGE ACTUAL OBJ IN ARRAY
+		
+		JSONArray editList =(JSONArray) songToEdit.get("songs"); //will be new list if edited song is added
 		
 		String title = (String) songToEdit.get("song name");
 		String album = (String) songToEdit.get("album name");
@@ -249,6 +250,26 @@ private void songDisplay() {
 			year = Integer.parseInt(yearString);
 			songToEdit.put("year", year);
 		}
+		
+		//check to see if new song object has a duplicate
+		boolean songDup = duplicate(songToEdit);
+		if(songDup) { //not a duplicate -> add to arrays
+			editList.add(songToEdit);
+			songs = editList;
+			root.put("songs", songs);
+			songFileHandler();
+			obsList.add(title + " by" + artist);
+			listView.getSelectionModel().select(title + " by" + artist);
+			
+			
+		}else {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("ERROR");
+			alert.setHeaderText(null);
+			alert.setContentText("Sorry, that song is already in your library");
+			alert.showAndWait();
+		}
+		
 		
 		//clear textboxes once song has been edited
 		txt_name.clear();
